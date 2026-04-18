@@ -1563,6 +1563,16 @@ app.get('/api/youtube/metadata', async (req, res) => {
 
 // System Status Check (yt-dlp)
 app.get('/api/system/ytdlp-status', async (req, res) => {
+    // 1. If in Vercel/Cloud Trial mode, return success (using GitHub Action Workers)
+    if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+        return res.json({
+            available: true,
+            version: 'Cloud Engine (GitHub Workers)',
+            binaryPath: 'managed-cloud',
+            source: 'cloud'
+        });
+    }
+
     if (!ytdlpBinaryPath) {
         return res.json({
             available: false,
