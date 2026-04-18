@@ -1,14 +1,24 @@
 {
-  "name": "onlyclick",
+  "name": "onlyclick-trial",
   "version": "1.9.1",
-  "description": "AI-powered video clipping tool",
+  "description": "ONLYCLICK Web Trial",
+  "main": "api/index.js",
   "scripts": {
-    "build:web": "node build/web/build-web.js",
-    "dev:electron": "cd build/electron && npm install && npm start",
-    "build:electron-win": "cd build/electron && npm install && npm run build:win",
-    "build:electron-mac": "cd build/electron && npm install && npm run build:mac"
+    "start": "node api/index.js",
+    "build": "exit 0"
   },
-  "keywords": ["video", "ai", "clipping", "youtube"],
-  "author": "ONLYCLICK",
-  "license": "MIT"
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@supabase/supabase-js": "^2.39.0",
+    "axios": "^1.13.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "internal-ip": "^8.0.0",
+    "multer": "^2.0.0",
+    "octokit": "^3.1.2",
+    "puppeteer": "^24.36.1",
+    "rss-parser": "^3.13.0",
+    "ws": "^8.19.0"
+  }
 }
