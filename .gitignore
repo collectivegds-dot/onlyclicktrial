@@ -2,14 +2,20 @@
 node_modules/
 .npm/
 
-# Local DB & Storage (Trial uses Supabase)
+# Local Storage (Trial uses Supabase)
 backend/db/*.json
 !backend/db/prompts.json
 clips/
 downloads/
-assets/
 logos/
 stickers/
+
+# Assets: Ignore only heavy media, but KEEP frontend bundles
+assets/*.mp4
+assets/*.mov
+assets/*.avi
+assets/*.mkv
+assets/transcripts/
 
 # OS files
 .DS_Store
