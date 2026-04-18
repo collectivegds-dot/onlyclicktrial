@@ -2039,6 +2039,41 @@ app.post('/api/youtube/download', async (req, res) => {
     let { url, format_id, title, preferredLang, cookieBrowser } = req.body;
     if (!url) return res.status(400).json({ error: "URL is required" });
 
+    // 1. If in Vercel/Cloud mode, dispatch to GitHub Actions immediately
+    if (process.env.VERCEL || process.env.NODE_ENV === 'production' || !ytdlpBinaryPath) {
+        console.log(`[CLOUD-DL] Dispatching download job to GitHub Actions: ${url}`);
+        const jobId = `job_${Date.now()}`;
+        
+        try {
+            await db.addJob({
+                id: jobId,
+                type: 'download',
+                status: 'pending',
+                data: { url, format_id, title, preferredLang },
+                timestamp: new Date().toISOString()
+            });
+
+            if (octokit) {
+                await octokit.request('POST /repos/{owner}/{repo}/dispatches', {
+                    owner: process.env.GITHUB_REPO.split('/')[0],
+                    repo: process.env.GITHUB_REPO.split('/')[1],
+                    event_type: 'render_job',
+                    client_payload: { jobId, type: 'download' }
+                });
+            }
+            
+            return res.json({ 
+                success: true, 
+                downloadId: jobId, 
+                title: title || 'YouTube Video (Cloud)',
+                message: 'Cloud Download started. Tracking status via Central State.'
+            });
+        } catch (e) {
+            console.error("Failed to dispatch cloud download:", e.message);
+            // Fallthrough to local if allowed, or return error
+        }
+    }
+
     // 1. Fetch Title if missing (For nice filenames)
     if (!title) {
         try {
