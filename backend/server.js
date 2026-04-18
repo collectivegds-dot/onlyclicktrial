@@ -1615,6 +1615,13 @@ app.get('/api/system/ytdlp-status', async (req, res) => {
 
 // System: Update yt-dlp to latest version (with retry + self-update strategy)
 app.post('/api/system/ytdlp-update', async (req, res) => {
+    // 1. If in Vercel, just return success (Cloud Managed)
+    if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+        return res.json({
+            success: true,
+            message: 'Cloud Engine is automatically managed and up to date.'
+        });
+    }
     const isWindows = process.platform === 'win32';
     const BIN_DIR = path.join(__dirname, 'bin');
 
