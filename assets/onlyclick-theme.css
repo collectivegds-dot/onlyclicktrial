@@ -1,0 +1,453 @@
+/* ============================================================
+   ONLYCLICK Theme Override
+   Replaces Qlipper blue/purple palette with Amber + Dark Slate
+   ============================================================ */
+
+/* ── CSS Custom Property Overrides ── */
+:root {
+  --oc-amber:        #f59e0b;
+  --oc-amber-dark:   #d97706;
+  --oc-amber-light:  #fcd34d;
+  --oc-amber-glow:   rgba(245,158,11,0.25);
+  --oc-bg:           #0b0f19;
+  --oc-surface:      #111827;
+  --oc-surface2:     #1c2333;
+  --oc-surface3:     #243044;
+  --oc-border:       #2a3448;
+  --oc-text:         #f1f5f9;
+  --oc-text-muted:   #94a3b8;
+  --oc-success:      #10b981;
+  --oc-error:        #ef4444;
+  --oc-warning:      #f59e0b;
+}
+
+/* ── Global Base ── */
+body, #root {
+  background-color: var(--oc-bg) !important;
+  color: var(--oc-text) !important;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif !important;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--oc-surface); }
+::-webkit-scrollbar-thumb { background: var(--oc-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--oc-amber-dark); }
+
+/* ── Primary Buttons (was indigo/violet → now amber) ── */
+button[class*="bg-indigo"],
+button[class*="bg-violet"],
+button[class*="bg-purple"],
+button[class*="bg-blue"],
+[class*="bg-indigo-600"],
+[class*="bg-violet-600"],
+[class*="bg-purple-600"],
+[class*="bg-blue-600"],
+[class*="bg-indigo-500"],
+[class*="bg-violet-500"] {
+  background-color: var(--oc-amber) !important;
+  color: #0f172a !important;
+  border-color: var(--oc-amber-dark) !important;
+  font-weight: 700 !important;
+}
+
+button[class*="bg-indigo"]:hover,
+button[class*="bg-violet"]:hover,
+button[class*="bg-purple"]:hover,
+button[class*="bg-blue"]:hover,
+[class*="bg-indigo-600"]:hover,
+[class*="bg-violet-600"]:hover {
+  background-color: var(--oc-amber-dark) !important;
+}
+
+/* ── Text accent colors ── */
+[class*="text-indigo"],
+[class*="text-violet"],
+[class*="text-purple"],
+[class*="text-blue-400"],
+[class*="text-blue-500"],
+[class*="text-blue-600"] {
+  color: var(--oc-amber) !important;
+}
+
+/* ── Border accent ── */
+[class*="border-indigo"],
+[class*="border-violet"],
+[class*="border-purple"],
+[class*="border-blue-500"],
+[class*="border-blue-600"] {
+  border-color: var(--oc-amber) !important;
+}
+
+/* ── Ring / focus ── */
+[class*="ring-indigo"],
+[class*="ring-violet"],
+[class*="ring-purple"],
+[class*="ring-blue"] {
+  --tw-ring-color: var(--oc-amber) !important;
+}
+
+/* ── Sidebar & Panels ── */
+aside,
+[class*="sidebar"],
+nav[class*="flex-col"],
+.sidebar {
+  background-color: var(--oc-surface) !important;
+  border-color: var(--oc-border) !important;
+}
+
+/* ── Cards ── */
+[class*="bg-gray-800"],
+[class*="bg-gray-900"],
+[class*="bg-zinc-800"],
+[class*="bg-zinc-900"],
+[class*="bg-neutral-800"],
+[class*="bg-neutral-900"],
+[class*="bg-slate-800"],
+[class*="bg-slate-900"] {
+  background-color: var(--oc-surface2) !important;
+}
+
+[class*="bg-gray-700"],
+[class*="bg-zinc-700"],
+[class*="bg-neutral-700"],
+[class*="bg-slate-700"] {
+  background-color: var(--oc-surface3) !important;
+}
+
+/* ── Input fields ── */
+input, textarea, select,
+[class*="bg-gray-700"] input,
+[class*="bg-zinc-700"] input {
+  background-color: var(--oc-surface3) !important;
+  border-color: var(--oc-border) !important;
+  color: var(--oc-text) !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--oc-amber) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px var(--oc-amber-glow) !important;
+}
+
+/* ── Progress bars ── */
+[class*="bg-indigo"][role="progressbar"],
+progress,
+[class*="progress"] [class*="bg-indigo"],
+[class*="progress"] [class*="bg-violet"],
+[class*="progress"] [class*="bg-blue"] {
+  background-color: var(--oc-amber) !important;
+}
+
+/* ── Badges ── */
+[class*="bg-indigo"][class*="rounded-full"],
+[class*="bg-violet"][class*="rounded-full"],
+[class*="bg-blue"][class*="rounded-full"] {
+  background-color: var(--oc-amber) !important;
+  color: #0f172a !important;
+}
+
+/* ── Checkboxes & Radios (accent) ── */
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  accent-color: var(--oc-amber) !important;
+}
+
+/* ── Modal / Dialog backdrop ── */
+[class*="fixed inset-0"][class*="bg-black"] {
+  background-color: rgba(0,0,0,0.75) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Dropdown / popover ── */
+[class*="absolute"][class*="bg-gray-800"],
+[class*="absolute"][class*="bg-gray-900"],
+[class*="absolute"][class*="bg-zinc-800"] {
+  background-color: var(--oc-surface2) !important;
+  border: 1px solid var(--oc-border) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+}
+
+/* ── Active / selected state ── */
+[class*="bg-indigo-900"],
+[class*="bg-violet-900"],
+[class*="bg-blue-900"] {
+  background-color: rgba(245,158,11,0.15) !important;
+}
+
+/* ── Gradient hero areas ── */
+[class*="from-indigo"],
+[class*="from-violet"],
+[class*="from-purple"],
+[class*="from-blue-600"] {
+  --tw-gradient-from: #92400e !important;
+}
+[class*="to-indigo"],
+[class*="to-violet"],
+[class*="to-purple"],
+[class*="to-blue-600"] {
+  --tw-gradient-to: #f59e0b !important;
+}
+
+/* ── App logo / header branding ── */
+.oc-logo-text {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.05em;
+  color: var(--oc-amber);
+}
+
+/* ── OC Logo Badge (injected by JS patch) ── */
+.oc-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0f172a;
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: -0.5px;
+  box-shadow: 0 2px 8px rgba(245,158,11,0.4);
+  flex-shrink: 0;
+}
+
+/* ── Toast notifications ── */
+[class*="toast"] [class*="bg-indigo"],
+[class*="notification"] [class*="bg-indigo"] {
+  background-color: var(--oc-amber) !important;
+  color: #0f172a !important;
+}
+
+/* ── Table row hover ── */
+tr:hover td {
+  background-color: rgba(245,158,11,0.05) !important;
+}
+
+/* ── Clip cards highlight ── */
+[class*="border-l-4"][class*="border-indigo"],
+[class*="border-l-4"][class*="border-violet"],
+[class*="border-l-4"][class*="border-blue"] {
+  border-left-color: var(--oc-amber) !important;
+}
+
+/* ── Skeleton loaders ── */
+[class*="animate-pulse"][class*="bg-gray-700"],
+[class*="animate-pulse"][class*="bg-zinc-700"] {
+  background-color: var(--oc-surface3) !important;
+}
+
+/* ── Tooltip ── */
+[role="tooltip"],
+[class*="tooltip"] {
+  background-color: var(--oc-surface3) !important;
+  border: 1px solid var(--oc-border) !important;
+  color: var(--oc-text) !important;
+}
+
+/* ── Thin accent line at very top of app ── */
+body::before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #d97706, #fcd34d);
+  z-index: 9999;
+}
+
+/* ── Patch: hide any embedded Qlipper logo image, show OC instead ── */
+img[src*="qlipper-logo"],
+img[src*="logo-dark"],
+img[src*="logo-light"],
+img[alt*="Qlipper"],
+img[alt*="qlipper"] {
+  display: none !important;
+}
+
+/* ── Hide update section / external links ── */
+[class*="update-banner"],
+[class*="update-notice"],
+a[href*="qlipper.ai"],
+a[href*="qlipper.com"] {
+  display: none !important;
+}
+
+/* ── Popup Overlay (shared) ── */
+#oc-ig-overlay,
+#oc-lic-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+#oc-ig-overlay.oc-popup-visible,
+#oc-lic-overlay.oc-popup-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Popup Card ── */
+.oc-popup-card {
+  width: 100%;
+  max-width: 400px;
+  background: #0f111a;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(245, 158, 11, 0.08);
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.oc-popup-visible .oc-popup-card {
+  transform: scale(1) translateY(0);
+}
+
+/* ── Popup Icon ── */
+.oc-popup-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Popup Typography ── */
+.oc-popup-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.oc-popup-desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+}
+.oc-popup-hint {
+  font-size: 0.65rem;
+  color: #475569;
+  margin-top: 1rem;
+  line-height: 1.4;
+}
+
+/* ── Popup Buttons ── */
+.oc-popup-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+.oc-btn-ig {
+  background: linear-gradient(135deg, #E1306C, #F77737);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(225, 48, 108, 0.3);
+}
+.oc-btn-ig:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4); }
+.oc-btn-secondary {
+  background: #1e293b;
+  color: #94a3b8;
+  border: 1px solid #334155;
+}
+.oc-btn-secondary:hover { background: #334155; color: #fff; }
+.oc-btn-primary {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0f172a;
+  font-weight: 800;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+}
+.oc-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4); }
+.oc-btn-primary:disabled { opacity: 0.7; cursor: default; transform: none; }
+
+/* ── Popup Checkbox ── */
+.oc-popup-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: #64748b;
+  cursor: pointer;
+  margin-top: 6px;
+}
+.oc-popup-check input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #f59e0b;
+  cursor: pointer;
+}
+
+/* ── License Input ── */
+.oc-lic-wrap {
+  margin-bottom: 1rem;
+}
+.oc-lic-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: #1e293b;
+  border: 2px solid #334155;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+.oc-lic-input:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+}
+.oc-lic-input::placeholder {
+  color: #475569;
+  letter-spacing: 0.2em;
+}
+.oc-lic-err {
+  color: #ef4444;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  padding: 6px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 8px;
+}
+
+/* ── Shake animation ── */
+@keyframes oc-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.oc-shake { animation: oc-shake 0.4s ease; }
