@@ -1,0 +1,11 @@
+{
+  "name": "onlyclick-frontend",
+  "version": "1.9.1",
+  "description": "ONLYCLICK frontend (pre-built)",
+  "scripts": {
+    "preview": "vite preview --port 3002"
+  },
+  "keywords": [],
+  "author": "ONLYCLICK",
+  "license": "MIT"
+}

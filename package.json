@@ -1,0 +1,14 @@
+{
+  "name": "onlyclick",
+  "version": "1.9.1",
+  "description": "AI-powered video clipping tool",
+  "scripts": {
+    "build:web": "node build/web/build-web.js",
+    "dev:electron": "cd build/electron && npm install && npm start",
+    "build:electron-win": "cd build/electron && npm install && npm run build:win",
+    "build:electron-mac": "cd build/electron && npm install && npm run build:mac"
+  },
+  "keywords": ["video", "ai", "clipping", "youtube"],
+  "author": "ONLYCLICK",
+  "license": "MIT"
+}

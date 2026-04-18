@@ -1,0 +1,34 @@
+name: Render Video
+on:
+  repository_dispatch:
+    types: [render_job]
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+            node-version: '20'
+
+      - name: Setup FFmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v3
+
+      - name: Install dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Run Job Worker
+        env:
+          JOB_ID: ${{ github.event.client_payload.jobId }}
+          VIDEO_URL: ${{ github.event.client_payload.videoUrl }}
+          CONFIG: ${{ github.event.client_payload.config }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          node backend/job-worker.js
